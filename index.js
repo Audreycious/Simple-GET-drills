@@ -7,7 +7,7 @@ function App(params) {
         fetch(`https://dog.ceo/api/breeds/image/random/${textInput}`)
             .then(response => response.json())
             .then(responseJson => {
-                console.log(responseJson);
+                responseJson.message.forEach(res => console.log(res));
                 responseJson.message.forEach(picture => {
                     $("section").append(`<img src="${picture}" />`);
                 });
