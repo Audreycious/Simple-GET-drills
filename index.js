@@ -22,11 +22,18 @@ function App(params) {
             .then(response => response.json())
             .then(responseJson => {
                 console.log(responseJson);
-                if (responseJson.code !== 404) {
+                if (responseJson.status == "success") {
                     $("section").html(`<img src="${responseJson.message}" />`);
-                }})
-            .catch($("section").html("Sorry, whoopsies! :)"))
-            });
-    }
+                }
+                else {
+                    throw responseJson;
+                }
+            })
+            .catch((error) => {
+                $("section").html(error.message);
+            })
+        }
+    );
+}
 
 App();
